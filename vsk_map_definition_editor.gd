@@ -37,7 +37,7 @@ func export_map_upload() -> void:
 		export_data_callback.set_instance(self)
 		export_data_callback.set_function("get_export_data")
 		
-		VSKSDK.show_upload_panel(export_data_callback, VSKSDK.UserContentType.Map)
+		VSKEditor.show_upload_panel(export_data_callback, VSKEditor.UserContentType.Map)
 	else:
 		printerr("Node is not valid!")
 	
