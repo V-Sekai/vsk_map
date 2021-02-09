@@ -78,13 +78,16 @@ func _menu_option(p_id : int) -> void:
 				
 	error_callback(err)
 
-func setup_editor_interface(p_editor_interface : EditorInterface) -> void:
-	pass
-
 func _save_file_at_path(p_string : String) -> void:
 	VSKExporter.export_map(editor_plugin.get_editor_interface().get_edited_scene_root(),\
 	node,\
 	p_string)
+
+func _notification(what):
+	match what:
+		NOTIFICATION_PREDELETE:
+			if editor_plugin:
+				editor_plugin.remove_control_from_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_MENU, options)
 
 func _init(p_editor_plugin : EditorPlugin) -> void:
 	editor_plugin = p_editor_plugin
@@ -108,6 +111,7 @@ func _init(p_editor_plugin : EditorPlugin) -> void:
 	options.get_popup().add_item("Upload Map", MENU_OPTION_UPLOAD_MAP)
 	
 	options.get_popup().connect("id_pressed", self, "_menu_option")
+	options.hide()
 	
 func _ready():
 	pass

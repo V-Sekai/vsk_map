@@ -25,7 +25,6 @@ func get_name() -> String:
 func _enter_tree() -> void:
 	editor_interface = get_editor_interface()
 	map_definition_editor = map_definition_editor_const.new(self)
-	map_definition_editor.setup_editor_interface(editor_interface)
 	
 	editor_interface.get_editor_viewport().add_child(map_definition_editor)
 	
