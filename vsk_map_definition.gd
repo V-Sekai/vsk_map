@@ -1,5 +1,24 @@
-extends "vsk_map_definition_runtime.gd"
 tool
+extends "vsk_map_definition_runtime.gd"
 
-export(String) var database_id: String = ""
+var database_id: String = ""
 export(NodePath) var preview_camera_path: NodePath = NodePath()
+
+export(Array, NodePath) var pipeline_paths = []
+
+func add_pipeline(p_node: Node) -> void:
+	pipeline_paths.push_back(get_path_to(p_node))
+	
+func remove_pipeline(p_node: Node) -> void:
+	pipeline_paths.erase(get_path_to(p_node))
+
+func _get_property_list():
+    var properties = []
+    properties.append(
+        {
+            name = "database_id",
+            type = TYPE_STRING,
+            usage = PROPERTY_USAGE_STORAGE | PROPERTY_USAGE_SCRIPT_VARIABLE
+        }
+    )
+    return properties
