@@ -79,9 +79,7 @@ func _menu_option(p_id : int) -> void:
 	error_callback(err)
 
 func _save_file_at_path(p_string : String) -> void:
-	VSKExporter.export_map(editor_plugin.get_editor_interface().get_edited_scene_root(),\
-	node,\
-	p_string)
+	VSKExporter.export_map(node, p_string)
 
 func _notification(what):
 	match what:
