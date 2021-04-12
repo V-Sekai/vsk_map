@@ -34,11 +34,15 @@ func get_export_data() -> Dictionary:
 
 func export_map_upload() -> void:
 	if node and node is Node:
-		var export_data_callback: FuncRef = FuncRef.new()
-		export_data_callback.set_instance(self)
-		export_data_callback.set_function("get_export_data")
-		
-		VSKEditor.show_upload_panel(export_data_callback, vsk_types_const.UserContentType.Map)
+		var vsk_editor: Node = get_node_or_null("/root/VSKEditor")
+		if vsk_editor:
+			var export_data_callback: FuncRef = FuncRef.new()
+			export_data_callback.set_instance(self)
+			export_data_callback.set_function("get_export_data")
+			
+			vsk_editor.show_upload_panel(export_data_callback, vsk_types_const.UserContentType.Map)
+		else:
+			printerr("Could not load VSKEditor!")
 	else:
 		printerr("Node is not valid!")
 	
@@ -79,9 +83,15 @@ func _menu_option(p_id : int) -> void:
 	error_callback(err)
 
 func _save_file_at_path(p_string : String) -> void:
-	VSKExporter.export_map(editor_plugin.get_editor_interface().get_edited_scene_root(),\
-	node,\
-	p_string)
+	var vsk_exporter: Node = get_node_or_null("/root/VSKExporter")
+	
+	var err: int = map_callback_const.EXPORTER_NODE_LOADED
+	if vsk_exporter:
+		err = vsk_exporter.export_map(editor_plugin.get_editor_interface().get_edited_scene_root(),\
+		node,\
+		p_string)
+		
+	error_callback(err)
 
 func _notification(what):
 	match what:
