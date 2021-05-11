@@ -36,11 +36,7 @@ func export_map_upload() -> void:
 	if node and node is Node:
 		var vsk_editor: Node = get_node_or_null("/root/VSKEditor")
 		if vsk_editor:
-			var export_data_callback: FuncRef = FuncRef.new()
-			export_data_callback.set_instance(self)
-			export_data_callback.set_function("get_export_data")
-			
-			vsk_editor.show_upload_panel(export_data_callback, vsk_types_const.UserContentType.Map)
+			vsk_editor.show_upload_panel(funcref(self, "get_export_data"), vsk_types_const.UserContentType.Map)
 		else:
 			printerr("Could not load VSKEditor!")
 	else:
