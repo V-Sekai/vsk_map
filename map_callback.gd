@@ -1,13 +1,11 @@
 extends Node
 
 
-enum {
-	MAP_OK,
-	MAP_FAILED,
-	ROOT_IS_NULL,
-	
-	EXPORTER_NODE_LOADED,
-}
+const MAP_OK=0
+const MAP_FAILED=1
+const ROOT_IS_NULL=2
+const EXPORTER_NODE_LOADED=3
+
 
 static func get_error_string(p_err: int) -> String:
 	var error_string: String = "Unknown error!"

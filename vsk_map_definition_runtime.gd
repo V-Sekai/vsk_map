@@ -1,15 +1,15 @@
-extends Spatial
-tool
+@tool
+extends Node3D
 
 class EntityInstance extends Resource:
-	export(int) var parent_id: int
-	export(int) var entity_id: int
-	export(int) var properties_id: int
-	export(Transform) var transform: Transform
+	@export var parent_id: int
+	@export var entity_id: int
+	@export var properties_id: int
+	@export var transform: Transform3D
 
-export(Array) var map_resources: Array = []
-export(Array) var entity_instance_list: Array = []
-export(Array) var entity_instance_properties_list: Array = []
+@export var map_resources: Array # (Array) = []
+@export var entity_instance_list: Array # (Array) = []
+@export var entity_instance_properties_list: Array # (Array) = []
 
 func _ready():
 	if !Engine.is_editor_hint():

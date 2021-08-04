@@ -13,10 +13,9 @@ var save_dialog : FileDialog = null
 
 const OUTPUT_SCENE_EXTENSION = "scn"
 
-enum {
-	MENU_OPTION_EXPORT_MAP
-	MENU_OPTION_UPLOAD_MAP
-}
+const MENU_OPTION_EXPORT_MAP=0
+const MENU_OPTION_UPLOAD_MAP=1
+
 
 func export_map_local() -> void:
 	save_dialog.add_filter("*.%s;%s" % [OUTPUT_SCENE_EXTENSION, OUTPUT_SCENE_EXTENSION.to_upper()]);
@@ -36,7 +35,7 @@ func export_map_upload() -> void:
 	if node and node is Node:
 		var vsk_editor: Node = get_node_or_null("/root/VSKEditor")
 		if vsk_editor:
-			vsk_editor.show_upload_panel(funcref(self, "get_export_data"), vsk_types_const.UserContentType.Map)
+			vsk_editor.show_upload_panel(Callable(self, "get_export_data"), vsk_types_const.UserContentType.Map)
 		else:
 			printerr("Could not load VSKEditor!")
 	else:
@@ -52,7 +51,7 @@ func error_callback(p_err: int) -> void:
 		
 		printerr(error_string)
 		err_dialog.set_text(error_string)
-		err_dialog.popup_centered_minsize()
+		err_dialog.popup_centered_clamped()
 
 
 func check_if_map_is_valid() -> bool:
@@ -95,17 +94,17 @@ func _notification(what):
 			if editor_plugin:
 				editor_plugin.remove_control_from_container(EditorPlugin.CONTAINER_SPATIAL_EDITOR_MENU, options)
 
-func _init(p_editor_plugin : EditorPlugin) -> void:
+func _init(p_editor_plugin : EditorPlugin):
 	editor_plugin = p_editor_plugin
 	
 	err_dialog = AcceptDialog.new()
 	add_child(err_dialog)
 	
 	save_dialog = FileDialog.new()
-	save_dialog.mode = FileDialog.MODE_SAVE_FILE
+	save_dialog.mode = FileDialog.FILE_MODE_SAVE_FILE
 	save_dialog.access = FileDialog.ACCESS_FILESYSTEM
-	save_dialog.popup_exclusive = true
-	save_dialog.connect("file_selected", self, "_save_file_at_path")
+	save_dialog.exclusive = true
+	save_dialog.connect("file_selected", Callable(self, "_save_file_at_path"))
 	add_child(save_dialog)
 	
 	options = MenuButton.new()
@@ -116,7 +115,7 @@ func _init(p_editor_plugin : EditorPlugin) -> void:
 	options.get_popup().add_item("Export Map", MENU_OPTION_EXPORT_MAP)
 	options.get_popup().add_item("Upload Map", MENU_OPTION_UPLOAD_MAP)
 	
-	options.get_popup().connect("id_pressed", self, "_menu_option")
+	options.get_popup().connect("id_pressed", Callable(self, "_menu_option"))
 	options.hide()
 	
 func _ready():
