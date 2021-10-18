@@ -13,11 +13,11 @@ class EntityInstance extends Resource:
 
 func _ready():
 	if !Engine.is_editor_hint():
-		if get_tree() and get_tree().current_scene == self and filename != "":
+		if get_tree() and get_tree().current_scene == self and scene_file_path != "":
 			var startup_manager: Node = get_tree().get_root().get_node_or_null("VSKStartupManager")
 			if startup_manager:
 				get_tree().current_scene = null
-				startup_manager.map = get_filename()
+				startup_manager.map = get_scene_file_path()
 				startup_manager.startup()
 				queue_free()
 				get_parent().remove_child(self)
