@@ -47,10 +47,10 @@ func edit(p_node : Node) -> void:
 	
 func error_callback(p_err: int) -> void:
 	if p_err != map_callback_const.MAP_OK:
-		var error_string: String = map_callback_const.get_error_string(p_err)
+		var error_str: String = map_callback_const.get_error_string(p_err)
 		
-		printerr(error_string)
-		err_dialog.set_text(error_string)
+		printerr(error_str)
+		err_dialog.set_text(error_str)
 		err_dialog.popup_centered_clamped()
 
 
