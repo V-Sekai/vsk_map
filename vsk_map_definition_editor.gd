@@ -1,7 +1,7 @@
 extends Control
 
 const vsk_types_const = preload("res://addons/vsk_importer_exporter/vsk_types.gd")
-const map_callback_const = preload("map_callback.gd")
+const map_callback_const = preload("res://addons/vsk_map/map_callback.gd")
 
 var editor_plugin : EditorPlugin = null
 
