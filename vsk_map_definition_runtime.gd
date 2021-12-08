@@ -11,6 +11,12 @@ class EntityInstance extends Resource:
 @export var entity_instance_list: Array # (Array) = []
 @export var entity_instance_properties_list: Array # (Array) = []
 
+@export var database_id: String
+@export var vskeditor_preview_type: String
+@export var vskeditor_preview_texture : Texture2D
+@export_node_path(Camera3D) var vskeditor_preview_camera_path
+@export var vskeditor_pipeline_paths : Array[NodePath]
+
 func _ready():
 	if !Engine.is_editor_hint():
 		if get_tree() and get_tree().current_scene == self and scene_file_path != "":
