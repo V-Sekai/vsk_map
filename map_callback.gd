@@ -1,5 +1,5 @@
+@tool
 extends Node
-
 
 const MAP_OK=0
 const MAP_FAILED=1

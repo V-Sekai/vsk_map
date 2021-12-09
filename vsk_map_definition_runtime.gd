@@ -1,9 +1,9 @@
 @tool
 extends Node3D
 
-@export var map_resources: Array # (Array) = []
-@export var entity_instance_list: Array # (Array) = []
-@export var entity_instance_properties_list: Array # (Array) = []
+@export var map_resources: Array = []
+@export var entity_instance_list: Array = []
+@export var entity_instance_properties_list: Array = []
 
 @export var database_id: String
 @export_enum("VSK_PREVIEW_CAMERA", "VSK_PREVIEW_TEXTURE") var vskeditor_preview_type: int
