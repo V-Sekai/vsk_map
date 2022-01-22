@@ -98,14 +98,14 @@ func _init(p_editor_plugin : EditorPlugin):
 	editor_plugin = p_editor_plugin
 	
 	err_dialog = AcceptDialog.new()
-	add_child(err_dialog)
+	add_child(err_dialog, true)
 	
 	save_dialog = FileDialog.new()
 	save_dialog.mode = FileDialog.FILE_MODE_SAVE_FILE
 	save_dialog.access = FileDialog.ACCESS_FILESYSTEM
 	save_dialog.exclusive = true
 	save_dialog.connect("file_selected", Callable(self, "_save_file_at_path"))
-	add_child(save_dialog)
+	add_child(save_dialog, true)
 	
 	options = MenuButton.new()
 	options.set_switch_on_hover(true)

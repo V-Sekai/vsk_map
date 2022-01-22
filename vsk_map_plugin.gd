@@ -26,7 +26,7 @@ func _enter_tree() -> void:
 	editor_interface = get_editor_interface()
 	map_definition_editor = map_definition_editor_const.new(self)
 	
-	editor_interface.get_viewport().call_deferred("add_child", map_definition_editor)
+	editor_interface.get_viewport().call_deferred("add_child", map_definition_editor, true)
 	
 	map_definition_editor.options.hide()
 
