@@ -58,13 +58,13 @@ func _exit_tree() -> void:
 			map_definition_editor.get_parent().remove_child(map_definition_editor)
 		map_definition_editor.queue_free()
 
-func _edit(p_object : Object) -> void:
+func _edit(p_object : Variant) -> void:
 	if map_definition_editor:
 		if p_object is Node and p_object.get_script() == map_definition_const:
 			map_definition_editor.edit(p_object)
 			update_menu_options()
 
-func _handles(p_object : Object) -> bool:
+func _handles(p_object : Variant) -> bool:
 	if p_object.get_script() == map_definition_const:
 		return true
 	else:
