@@ -1,8 +1,8 @@
 @tool
 extends EditorPlugin
 
-const map_definition_editor_const = preload("vsk_map_definition_editor.gd")
-const map_definition_const = preload("vsk_map_definition.gd")
+const map_definition_editor_const = preload("./vsk_map_definition_editor.gd")
+const map_definition_const = preload("./vsk_map_definition.gd")
 
 var editor_interface : EditorInterface = null
 var map_definition_editor : Control = null
@@ -22,7 +22,7 @@ func _get_plugin_name() -> String:
 
 func _menu_option(p_id : int) -> void:
 	if map_definition_editor:
-		map_definition_editor.menu_option(p_id)
+		map_definition_editor._menu_option(p_id)
 
 func update_menu_options() -> void:
 	if option_button:
