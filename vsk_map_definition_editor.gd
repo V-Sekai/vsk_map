@@ -33,7 +33,7 @@ func export_map_upload() -> void:
 	if node and node is Node:
 		var vsk_editor: Node = get_node_or_null("/root/VSKEditor")
 		if vsk_editor:
-			vsk_editor.show_upload_panel(Callable(self, "get_export_data"), vsk_types_const.UserContentType.Map)
+			vsk_editor.show_upload_panel(self.get_export_data, vsk_types_const.UserContentType.Map)
 		else:
 			printerr("Could not load VSKEditor!")
 	else:
@@ -93,7 +93,7 @@ func setup_dialogs() -> void:
 	save_dialog.mode = FileDialog.FILE_MODE_SAVE_FILE
 	save_dialog.access = FileDialog.ACCESS_FILESYSTEM
 	save_dialog.exclusive = true
-	save_dialog.connect("file_selected", Callable(self, "_save_file_at_path"))
+	save_dialog.file_selected.connect(self._save_file_at_path)
 	editor_plugin.get_editor_interface().get_base_control().add_child(save_dialog)
 	
 func teardown_dialogs() -> void:
