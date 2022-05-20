@@ -5,7 +5,6 @@ extends Node3D
 @export var entity_instance_list: Array = []
 @export var entity_instance_properties_list: Array = []
 
-@export var database_id: String
 @export_enum("VSK_PREVIEW_CAMERA", "VSK_PREVIEW_TEXTURE") var vskeditor_preview_type: int
 
 @export var vskeditor_preview_texture : Texture2D
