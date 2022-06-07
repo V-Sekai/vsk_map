@@ -64,7 +64,7 @@ func _menu_option(p_id : int) -> void:
 	match p_id:
 		MENU_OPTION_INIT_MAP:
 			if check_if_map_is_valid():
-				node.set_script(load("res://addons/vsk_map/vsk_map_definition_runtime.gd"))
+				editor_plugin.get_editor_interface().get_edited_scene_root().set_script(load("res://addons/vsk_map/vsk_map_definition_runtime.gd"))
 			else:
 				map_callback_const.ROOT_IS_NULL
 		MENU_OPTION_EXPORT_MAP:
