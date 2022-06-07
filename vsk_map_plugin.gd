@@ -27,6 +27,7 @@ func _menu_option(p_id : int) -> void:
 func update_menu_options() -> void:
 	if option_button:
 		option_button.get_popup().clear()
+		option_button.get_popup().add_item("Define Map", map_definition_editor_const.MENU_OPTION_INIT_MAP)
 		option_button.get_popup().add_item("Export Map", map_definition_editor_const.MENU_OPTION_EXPORT_MAP)
 		option_button.get_popup().add_item("Upload Map", map_definition_editor_const.MENU_OPTION_UPLOAD_MAP)
 
@@ -59,23 +60,21 @@ func _exit_tree() -> void:
 		map_definition_editor.queue_free()
 
 func _edit(p_object : Variant) -> void:
-	if map_definition_editor:
-		if p_object is Node and p_object.get_script() == map_definition_const:
-			map_definition_editor.edit(p_object)
-			update_menu_options()
+	map_definition_editor.edit(p_object)
+	update_menu_options()
 
 func _handles(p_object : Variant) -> bool:
-	if p_object.get_script() == map_definition_const:
-		return true
-	else:
+	if not p_object is Node3D:
 		return false
+	return true
 
 func _make_visible(p_visible : bool) -> void:
-	if map_definition_editor:
-		if (p_visible):
-			if option_button:
-				option_button.show()
-		else:
-			if option_button:
-				option_button.hide()
-			map_definition_editor.edit(null)
+	if not map_definition_editor:
+		return
+	if (p_visible):
+		if option_button:
+			option_button.show()
+	else:
+		if option_button:
+			option_button.hide()
+		map_definition_editor.edit(null)

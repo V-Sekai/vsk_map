@@ -12,6 +12,7 @@ const OUTPUT_SCENE_EXTENSION = "scn"
 
 const MENU_OPTION_EXPORT_MAP=0
 const MENU_OPTION_UPLOAD_MAP=1
+const MENU_OPTION_INIT_MAP=2
 
 var editor_plugin: EditorPlugin = null
 
@@ -61,6 +62,11 @@ func check_if_map_is_valid() -> bool:
 func _menu_option(p_id : int) -> void:
 	var err: int = map_callback_const.MAP_OK
 	match p_id:
+		MENU_OPTION_INIT_MAP:
+			if check_if_map_is_valid():
+				node.set_script(load("res://addons/vsk_map/vsk_map_definition_runtime.gd"))
+			else:
+				map_callback_const.ROOT_IS_NULL
 		MENU_OPTION_EXPORT_MAP:
 			if check_if_map_is_valid():
 				export_map_local()
