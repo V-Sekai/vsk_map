@@ -83,7 +83,7 @@ func _edit(p_object : Variant) -> void:
 
 func _handles(p_object : Variant) -> bool:
 	if p_object != current_edited_object:
-		if current_edited_object:
+		if current_edited_object and is_instance_valid(current_edited_object):
 			if current_edited_object.is_connected("script_changed", refresh_edited_object):
 				current_edited_object.disconnect("script_changed", refresh_edited_object)
 		current_edited_object = null
