@@ -1,4 +1,8 @@
+@tool
 extends Control
+
+const vsk_map_definition_const = preload("res://addons/vsk_map/vsk_map_definition.gd")
+const vsk_map_definition_runtime_const = preload("res://addons/vsk_map/vsk_map_definition_runtime.gd")
 
 const vsk_types_const = preload("res://addons/vsk_importer_exporter/vsk_types.gd")
 const map_callback_const = preload("res://addons/vsk_map/map_callback.gd")
@@ -10,9 +14,11 @@ var save_dialog : FileDialog = null
 
 const OUTPUT_SCENE_EXTENSION = "scn"
 
-const MENU_OPTION_EXPORT_MAP=0
-const MENU_OPTION_UPLOAD_MAP=1
-const MENU_OPTION_INIT_MAP=2
+enum {
+	MENU_OPTION_EXPORT_MAP,
+	MENU_OPTION_UPLOAD_MAP,
+	MENU_OPTION_INIT_MAP
+}
 
 var editor_plugin: EditorPlugin = null
 
@@ -61,22 +67,25 @@ func check_if_map_is_valid() -> bool:
 
 func _menu_option(p_id : int) -> void:
 	var err: int = map_callback_const.MAP_OK
-	match p_id:
-		MENU_OPTION_INIT_MAP:
-			if check_if_map_is_valid():
-				editor_plugin.get_editor_interface().get_edited_scene_root().set_script(load("res://addons/vsk_map/vsk_map_definition_runtime.gd"))
-			else:
-				map_callback_const.ROOT_IS_NULL
-		MENU_OPTION_EXPORT_MAP:
-			if check_if_map_is_valid():
-				export_map_local()
-			else:
-				map_callback_const.ROOT_IS_NULL
-		MENU_OPTION_UPLOAD_MAP:
-			if check_if_map_is_valid():
-				export_map_upload()
-			else:
-				map_callback_const.ROOT_IS_NULL
+
+	var node_3d: Node3D = node
+	if node_3d:
+		match p_id:
+			MENU_OPTION_INIT_MAP:
+				if check_if_map_is_valid():
+					node_3d.set_script(vsk_map_definition_const)
+				else:
+					map_callback_const.ROOT_IS_NULL
+			MENU_OPTION_EXPORT_MAP:
+				if check_if_map_is_valid():
+					export_map_local()
+				else:
+					map_callback_const.ROOT_IS_NULL
+			MENU_OPTION_UPLOAD_MAP:
+				if check_if_map_is_valid():
+					export_map_upload()
+				else:
+					map_callback_const.ROOT_IS_NULL
 				
 	error_callback(err)
 
