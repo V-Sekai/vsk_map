@@ -76,7 +76,7 @@ func _edit(p_object : Variant) -> void:
 	current_edited_object = p_object
 	assert(current_edited_object)
 	if !current_edited_object.is_connected("script_changed", refresh_edited_object):
-		assert(current_edited_object.connect("script_changed", refresh_edited_object, [], CONNECT_DEFERRED) == OK)
+		assert(current_edited_object.connect("script_changed", refresh_edited_object, CONNECT_DEFERRED) == OK)
 	
 	map_definition_editor.edit(current_edited_object)
 	update_menu_options(current_edited_object)
