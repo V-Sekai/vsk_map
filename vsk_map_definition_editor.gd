@@ -24,7 +24,7 @@ var editor_plugin: EditorPlugin = null
 
 func export_map_local() -> void:
 	save_dialog.add_filter("*.%s;%s" % [OUTPUT_SCENE_EXTENSION, OUTPUT_SCENE_EXTENSION.to_upper()]);
-	
+	save_dialog.current_file = String(node.name).to_snake_case() + ".scn"
 	save_dialog.popup_centered_ratio()
 	save_dialog.set_title("Save Map As...")
 
