@@ -1,13 +1,8 @@
 @tool
 extends Node
 
-enum {
-	MAP_OK,
-	MAP_FAILED,
-	ROOT_IS_NULL,
-	EXPORTER_NODE_LOADED,
-	INVALID_NODE
-}
+enum { MAP_OK, MAP_FAILED, ROOT_IS_NULL, EXPORTER_NODE_LOADED, INVALID_NODE }
+
 
 static func get_error_str(p_err: int) -> String:
 	var error_str: String = "Unknown error!"
@@ -20,5 +15,5 @@ static func get_error_str(p_err: int) -> String:
 			error_str = "Exporter not loaded!"
 		INVALID_NODE:
 			error_str = "Invalid node!"
-	
+
 	return error_str
