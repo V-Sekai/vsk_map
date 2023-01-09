@@ -22,7 +22,7 @@ var editor_plugin: EditorPlugin = null
 func export_map_local() -> void:
 	save_dialog.add_filter("*.%s;%s" % [OUTPUT_SCENE_EXTENSION, OUTPUT_SCENE_EXTENSION.to_upper()])
 	save_dialog.current_file = String(node.name).to_snake_case() + ".scn"
-	save_dialog.popup_centered_ratio()
+	save_dialog.popup_centered_ratio(0.7)
 	save_dialog.set_title("Save Map As...")
 
 
@@ -104,7 +104,7 @@ func setup_dialogs() -> void:
 	save_dialog.mode = FileDialog.FILE_MODE_SAVE_FILE
 	save_dialog.access = FileDialog.ACCESS_FILESYSTEM
 	save_dialog.exclusive = true
-	save_dialog.popup_centered_ratio()
+	save_dialog.popup_centered_ratio(0.7)
 	save_dialog.file_selected.connect(self._save_file_at_path)
 	editor_plugin.get_editor_interface().get_base_control().add_child(save_dialog)
 
