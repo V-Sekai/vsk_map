@@ -104,6 +104,7 @@ func setup_dialogs() -> void:
 	save_dialog.mode = FileDialog.FILE_MODE_SAVE_FILE
 	save_dialog.access = FileDialog.ACCESS_FILESYSTEM
 	save_dialog.exclusive = true
+	save_dialog.popup_centered_ratio()
 	save_dialog.file_selected.connect(self._save_file_at_path)
 	editor_plugin.get_editor_interface().get_base_control().add_child(save_dialog)
 
