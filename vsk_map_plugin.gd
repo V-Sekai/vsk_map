@@ -37,7 +37,10 @@ func update_menu_options(p_current_node: Node3D) -> void:
 		if p_current_node:
 			# If we have a valid script, and the export and upload buttons
 			var current_script: Script = p_current_node.get_script()
-			if current_script == vsk_map_definition_editor_const.vsk_map_definition_const or current_script == vsk_map_definition_editor_const.vsk_map_definition_runtime_const:
+			if (
+				current_script == vsk_map_definition_editor_const.vsk_map_definition_const
+				or current_script == vsk_map_definition_editor_const.vsk_map_definition_runtime_const
+			):
 				option_button.get_popup().add_item("Export Map", vsk_map_definition_editor_const.MENU_OPTION_EXPORT_MAP)
 				option_button.get_popup().add_item("Upload Map", vsk_map_definition_editor_const.MENU_OPTION_UPLOAD_MAP)
 			elif current_script == null:
