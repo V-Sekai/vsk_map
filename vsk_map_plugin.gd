@@ -1,7 +1,7 @@
 @tool
 extends EditorPlugin
 
-const vsk_map_definition_editor_const = preload("./vsk_map_definition_editor.gd")
+const vsk_map_definition_editor_const = preload("res://addons/vsk_map/vsk_map_definition_editor.gd")
 
 var editor_interface: EditorInterface = null
 var map_definition_editor: Control = null
