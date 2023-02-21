@@ -84,7 +84,7 @@ func refresh_edited_object() -> void:
 			get_editor_interface().edit_node(current_edited_object)
 
 
-func _edit(p_object: Variant) -> void:
+func _edit(p_object: Object) -> void:
 	current_edited_object = p_object
 	assert(current_edited_object)
 	if !current_edited_object.is_connected("script_changed", refresh_edited_object):
@@ -94,7 +94,7 @@ func _edit(p_object: Variant) -> void:
 	update_menu_options(current_edited_object)
 
 
-func _handles(p_object: Variant) -> bool:
+func _handles(p_object: Object) -> bool:
 	if p_object != null and p_object != current_edited_object:
 		if current_edited_object and is_instance_valid(current_edited_object):
 			if current_edited_object.is_connected("script_changed", refresh_edited_object):
